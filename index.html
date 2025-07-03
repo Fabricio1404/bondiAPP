@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BondiApp: Tu Guía Inteligente para el Transporte Público en Formosa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-gray-800">
+
+    <nav class="bg-white shadow-lg p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center flex-wrap">
+            <a href="#" class="text-2xl font-bold text-gray-900">Bondi App</a>
+            <div class="block lg:hidden">
+                <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-800 hover:border-gray-800">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menú</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v15z"/></svg>
+                </button>
+            </div>
+            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden" id="nav-content">
+                <ul class="text-lg lg:flex-grow lg:flex lg:justify-end">
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="bg-gray-800 p-4 text-white">
+        <div class="container mx-auto flex flex-wrap justify-center md:justify-start gap-4 text-sm md:text-base">
+            <a href="#inicio" class="hover:text-gray-300 transition-colors duration-200">Inicio</a>
+            <a href="#" id="nav-lineas" class="hover:text-gray-300 transition-colors duration-200">Líneas</a>
+            <a href="#" id="nav-rutas-barrio" class="hover:text-gray-300 transition-colors duration-200">Buscar Ruta</a>
+            <a href="#" id="nav-mapa-paradas" class="hover:text-gray-300 transition-colors duration-200">Mapa General</a>
+        </div>
+    </nav>
+
+    <section id="inicio" class="hero-background text-white py-20 md:py-32 text-center relative overflow-hidden rounded-b-3xl shadow-xl">
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                BondiApp: Tu Ciudad, a tu Alcance.
+            </h1>
+            <p class="text-lg md:text-2xl mb-10 max-w-3xl mx-auto opacity-90 animate-fade-in-up delay-200">
+                Información de transporte público en Formosa, en tiempo real y al alcance de tu mano.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up delay-400">
+                <a href="#" class="btn-primary text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl">
+                    Descargar App (Próximamente)
+                </a>
+                <a href="#beneficios" class="btn-secondary text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl">
+                    Saber Más
+                </a>
+            </div>
+        </div>
+        <div class="absolute top-0 left-0 w-full h-full opacity-20">
+            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0,0 L100,0 L100,20 Q50,40 0,20 Z" fill="url(#grad1)"/>
+                <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#c4b5fd;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+    </section>
+
+    <section id="problema-solucion" class="py-16 md:py-24 bg-white rounded-xl shadow-lg mx-4 md:mx-auto max-w-6xl -mt-16 relative z-20 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-gray-900">
+                ¿Te sientes perdido en el transporte público?
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="text-left">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">El Problema Actual</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        Acceder a información clara y actualizada sobre el transporte público en Formosa es un desafío. Estudiantes, adultos mayores y personas sin transporte propio a menudo enfrentan barreras para comprender recorridos, tarifas, horarios y combinaciones de líneas. Esto genera demoras, incertidumbre y, en muchos casos, la necesidad de recurrir a opciones más costosas.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Historias como la de Ramiro, un estudiante que prefiere caminar o usar Uber por la falta de información, o Lucía Ramos, que necesita datos precisos para su trabajo, son el motor de BondiApp.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <img src="Imagenes/imagen1.png" alt="Ilustración de persona confundida con el transporte público" class="rounded-lg shadow-xl w-full h-auto object-cover">
+                </div>
+            </div>
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="text-center order-2 md:order-1">
+                    <img src="Imagenes/imagen3.png" alt="Ilustración de persona usando una aplicación de transporte" class="rounded-lg shadow-xl w-full h-auto object-cover">
+                </div>
+                <div class="text-left order-1 md:order-2">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Nuestra Solución: BondiApp</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        BondiApp es la plataforma digital integral diseñada para transformar tu experiencia con el transporte público. Te ofrecemos acceso claro y accesible a datos actualizados sobre recorridos, tarifas, paradas y combinaciones posibles, directamente desde tu dispositivo móvil.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Nuestra misión es fomentar la autonomía de los pasajeros, optimizar su tiempo y promover un uso más eficiente del transporte público en Formosa, beneficiando a toda la comunidad con inclusión, modernización y sostenibilidad.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="beneficios" class="py-16 md:py-24 bg-gray-50 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">
+                Beneficios que Transforman tu Viaje
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-2">
+                    <div class="mb-4 text-indigo-600">
+                        <svg class="icon-svg mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.25-13h-.5c-.41 0-.75.34-.75.75v3.25H7.5c-.41 0-.75.34-.75.75v.5c0 .41.34.75.75.75h3.25v3.25c0 .41.34.75.75.75h.5c.41 0 .75-.34.75-.75v-3.25h3.25c.41 0 .75-.34.75-.75v-.5c0-.41-.34-.75-.75-.75h-3.25V7.75c0-.41-.34-.75-.75-.75z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Información en Tiempo Real</h3>
+                    <p class="text-gray-700">Visualiza recorridos, horarios y ubicación de unidades al instante para planificar tu viaje con precisión.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-2">
+                    <div class="mb-4 text-green-600">
+                        <svg class="icon-svg mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm-1-12h2v6h-2zm0 8h2v2h-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Planificación Inteligente</h3>
+                    <p class="text-gray-700">Encuentra las mejores combinaciones y rutas para llegar a tu destino de forma eficiente.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-2">
+                    <div class="mb-4 text-purple-600">
+                        <svg class="icon-svg mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 4.36 6 6.93 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Notificaciones Personalizadas</h3>
+                    <p class="text-gray-700">Recibe alertas sobre demoras, cambios de ruta y llegada estimada para evitar sorpresas.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-2">
+                    <div class="mb-4 text-red-600">
+                        <svg class="icon-svg mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Ahorro y Autonomía</h3>
+                    <p class="text-gray-700">Reduce gastos en transporte privado y muévete con confianza por la ciudad.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-2">
+                    <div class="mb-4 text-yellow-600">
+                        <svg class="icon-svg mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zm-2-10h-2V7h-2v1h-2v2h2v2h2v-2h2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Interfaz Intuitiva</h3>
+                    <p class="text-gray-700">Diseñada para ser fácil de usar, incluso para quienes no tienen experiencia con apps de transporte.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-2">
+                    <div class="mb-4 text-blue-600">
+                        <svg class="icon-svg mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Comunidad y Valoración</h3>
+                    <p class="text-gray-700">Valora choferes y unidades para mejorar la calidad del servicio para todos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="como-funciona" class="py-16 md:py-24 bg-white px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">
+                Así de Fácil es Usar Bondi App
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-xl shadow-sm">
+                    <div class="w-16 h-16 bg-indigo-500 text-white rounded-full flex items-center justify-center text-3xl font-bold mb-4">1</div>
+                    <h3 class="text-xl font-semibold mb-3">Descarga la App</h3>
+                    <p class="text-gray-700">Disponible pronto en tu tienda de aplicaciones favorita.</p>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-xl shadow-sm">
+                    <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-3xl font-bold mb-4">2</div>
+                    <h3 class="text-xl font-semibold mb-3">Busca tu Ruta</h3>
+                    <p class="text-gray-700">Ingresa tu destino y descubre las mejores opciones de transporte.</p>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-xl shadow-sm">
+                    <div class="w-16 h-16 bg-purple-500 text-white rounded-full flex items-center justify-center text-3xl font-bold mb-4">3</div>
+                    <h3 class="text-xl font-semibold mb-3">Viaja Informado</h3>
+                    <p class="text-gray-700">Recibe actualizaciones en tiempo real y disfruta de un viaje sin estrés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonios" class="py-16 md:py-24 bg-gray-100 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">
+                Lo que Dicen Nuestros Usuarios
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <img src="https://placehold.co/80x80/667eea/ffffff?text=Ramiro" alt="Foto de Ramiro" class="rounded-full mx-auto mb-4 border-4 border-indigo-300">
+                    <p class="text-lg italic text-gray-700 mb-4">
+                        "Antes perdía mucho tiempo intentando entender las rutas. Con Bondi App, planifico mi viaje en segundos y llego a tiempo a la facultad. ¡Es un antes y un después!"
+                    </p>
+                    <p class="font-semibold text-gray-800">- Ramiro, Estudiante Universitario</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <img src="https://placehold.co/80x80/10b981/ffffff?text=Lucia" alt="Foto de Lucía Ramos" class="rounded-full mx-auto mb-4 border-4 border-green-300">
+                    <p class="text-lg italic text-gray-700 mb-4">
+                        "Como adulta mayor, la información clara es crucial. Bondi App me da la confianza para moverme por la ciudad sin depender de nadie. ¡Altamente recomendada!"
+                    </p>
+                    <p class="font-semibold text-gray-800">- Lucía Ramos, Adulta Mayor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="noticias" class="py-16 md:py-24 bg-white px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">
+                Mantente Informado con Bondi App
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+                Explora las últimas noticias, consejos y actualizaciones sobre el transporte público en Formosa.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <img src="Imagenes/noticia1.png" alt="Imagen de noticia" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h3 class="text-xl font-semibold mb-2">Nuevas Rutas de Colectivos para el Norte de Formosa</h3>
+                    <p class="text-gray-700 text-sm mb-4">Descubre cómo las nuevas rutas mejorarán la conectividad en la zona norte de la ciudad...</p>
+                    <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">Leer más &rarr;</a>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <img src="Imagenes/noticia2.png" alt="Imagen de noticia" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h3 class="text-xl font-semibold mb-2">Consejos para Ahorrar en Transporte Público</h3>
+                    <p class="text-gray-700 text-sm mb-4">Aprende a optimizar tus viajes y reducir tus gastos diarios con estos sencillos trucos...</p>
+                    <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">Leer más &rarr;</a>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <img src="Imagenes/noticia3.png" alt="Imagen de noticia" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h3 class="text-xl font-semibold mb-2">Actualización de Tarifas: Lo que Debes Saber</h3>
+                    <p class="text-gray-700 text-sm mb-4">Información importante sobre los próximos ajustes en las tarifas del transporte público...</p>
+                    <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">Leer más &rarr;</a>
+                </div>
+            </div>
+            <div class="mt-12">
+                <a href="#" class="btn-primary text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl">
+                    Ver Todas las Noticias
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="bondiapp-section" class="py-16 md:py-24 bg-gray-100 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">
+                Servicio Bondi App: Movilidad en Formosa
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                Ante la necesidad de facilitar el traslado de vecinos y vecinas en la ciudad, la Municipalidad de Formosa ha implementado el servicio de transporte urbano de pasajeros "BondiApp". Este servicio busca ofrecer una solución de movilidad eficiente y adaptada a las necesidades actuales.
+            </p>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-gray-900">Buscador de Rutas</h3>
+                <p class="text-gray-600 mb-6">Ingresá tu ubicación y destino para encontrar la mejor línea de colectivo.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="current-location" class="block text-gray-700 text-sm font-bold mb-2 text-left">Tu Ubicación Actual (ej: Centro, Nueva Pompeya):</label>
+                        <input type="text" id="current-location" placeholder="Escribe tu ubicación" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label for="destination" class="block text-gray-700 text-sm font-bold mb-2 text-left">Tu Destino (ej: Lote 110, Namqom):</label>
+                        <input type="text" id="destination" placeholder="Escribe tu destino" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+                <button id="search-route-btn" class="btn-primary text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl">
+                    Buscar Ruta
+                </button>
+                <div id="search-results" class="mt-8 p-4 bg-gray-50 rounded-lg text-left">
+                    <p class="text-gray-600 text-center">Los resultados de tu búsqueda aparecerán aquí.</p>
+                </div>
+            </div>
+
+            <button id="show-all-routes-btn" class="btn-secondary text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl mt-6">
+                Mostrar Mapa de Todas las Rutas y Paradas
+            </button>
+            <div id="all-routes-map" class="mt-4 hidden"></div>
+
+            <h3 class="text-2xl font-bold mb-6 mt-12 text-gray-900">Conocé las Líneas de Colectivo</h3>
+            <div id="line-list-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
+                <div class="line-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-line="A">
+                    <img src="https://placehold.co/400x250/667eea/ffffff?text=Linea+A" alt="Recorrido Línea A" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h4 class="text-xl font-semibold mb-2">Línea A</h4>
+                    <p class="text-gray-700 text-sm">Haz clic para ver el recorrido y barrios.</p>
+                </div>
+                <div class="line-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-line="B">
+                    <img src="https://placehold.co/400x250/b05e5e/ffffff?text=Linea+B" alt="Recorrido Línea B" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h4 class="text-xl font-semibold mb-2">Línea B</h4>
+                    <p class="text-gray-700 text-sm">Haz clic para ver el recorrido y barrios.</p>
+                </div>
+                <div class="line-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-line="C">
+                    <img src="https://placehold.co/400x250/10b981/ffffff?text=Linea+C" alt="Recorrido Línea C" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h4 class="text-xl font-semibold mb-2">Línea C</h4>
+                    <p class="text-gray-700 text-sm">Haz clic para ver el recorrido y barrios.</p>
+                </div>
+                <div class="line-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-line="D">
+                    <img src="https://placehold.co/400x250/5eb07f/ffffff?text=Linea+D" alt="Recorrido Línea D" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h4 class="text-xl font-semibold mb-2">Línea D</h4>
+                    <p class="text-gray-700 text-sm">Haz clic para ver el recorrido y barrios.</p>
+                </div>
+                <div class="line-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-line="E">
+                    <img src="https://placehold.co/400x250/5e7fb0/ffffff?text=Linea+E" alt="Recorrido Línea E" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h4 class="text-xl font-semibold mb-2">Línea E</h4>
+                    <p class="text-gray-700 text-sm">Haz clic para ver el recorrido y barrios.</p>
+                </div>
+                <div class="line-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-line="F">
+                    <img src="https://placehold.co/400x250/b05ea2/ffffff?text=Linea+F" alt="Recorrido Línea F" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h4 class="text-xl font-semibold mb-2">Línea F</h4>
+                    <p class="text-gray-700 text-sm">Haz clic para ver el recorrido y barrios.</p>
+                </div>
+                <div class="line-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-line="G">
+                    <img src="https://placehold.co/400x250/7bb05e/ffffff?text=Linea+G" alt="Recorrido Línea G" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h4 class="text-xl font-semibold mb-2">Línea G</h4>
+                    <p class="text-gray-700 text-sm">Haz clic para ver el recorrido y barrios.</p>
+                </div>
+                <div class="line-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-line="H">
+                    <img src="https://placehold.co/400x250/b09e5e/ffffff?text=Linea+H" alt="Recorrido Línea H" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h4 class="text-xl font-semibold mb-2">Línea H</h4>
+                    <p class="text-gray-700 text-sm">Haz clic para ver el recorrido y barrios.</p>
+                </div>
+                <div class="line-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-line="I">
+                    <img src="https://placehold.co/400x250/5e8cb0/ffffff?text=Linea+I" alt="Recorrido Línea I" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h4 class="text-xl font-semibold mb-2">Línea I</h4>
+                    <p class="text-gray-700 text-sm">Haz clic para ver el recorrido y barrios.</p>
+                </div>
+            </div>
+
+            <div id="line-detail-container" class="hidden bg-white p-8 rounded-xl shadow-lg mt-8 text-left">
+                <button id="back-to-lines" class="btn-primary text-white font-bold py-2 px-6 rounded-full shadow-md hover:shadow-lg">
+                    &larr; Volver a Líneas
+                </button>
+                <h3 id="detail-line-name" class="text-3xl font-bold mb-6 text-gray-900"></h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-12">
+                    <div>
+                        <h4 class="text-2xl font-semibold mb-4 text-gray-800">Barrios del Recorrido:</h4>
+                        <ul id="detail-neighborhoods" class="list-disc list-inside text-lg text-gray-700 space-y-2">
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-semibold mb-4 text-gray-800">Mapa del Recorrido:</h4>
+                        <div id="leaflet-line-map" class="w-full"></div> <p class="text-sm text-gray-600 mt-2">
+                            <span class="inline-block w-4 h-2 mr-2" style="background-color: #007bff;"></span>Recorrido de Ida
+                            <span class="inline-block w-4 h-2 ml-4 mr-2" style="background-color: #dc3545;"></span>Recorrido de Vuelta
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                    <h4 class="text-2xl font-semibold mb-6 text-gray-900">Comentarios y Sugerencias</h4>
+
+                    <form id="comment-form" class="mb-8">
+                        <div class="mb-4">
+                            <label for="comment-name" class="block text-gray-700 text-sm font-bold mb-2">Tu Nombre:</label>
+                            <input type="text" id="comment-name" placeholder="Ej: Juan Pérez" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="comment-text" class="block text-gray-700 text-sm font-bold mb-2">Tu Comentario/Consulta/Queja:</label>
+                            <textarea id="comment-text" rows="4" placeholder="Escribe aquí tu mensaje..." class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-secondary text-white font-bold py-2 px-6 rounded-full shadow-md hover:shadow-lg">
+                            Enviar Comentario
+                        </button>
+                    </form>
+
+                    <div id="comments-list">
+                        <p class="text-gray-600 text-center">No hay comentarios aún para esta línea.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12">
+               
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-indigo-700 text-white py-16 md:py-20 text-center rounded-t-3xl shadow-xl">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                ¡No te quedes sin tu Bondi App!
+            </h2>
+            <p class="text-lg md:text-xl mb-8 opacity-90">
+                Simplifica tus viajes y vive la experiencia de un transporte público inteligente.
+            </p>
+            <a href="#" class="btn-secondary text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl">
+                Descargar Ahora (Próximamente)
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-300 py-10 px-6">
+        <div class="container mx-auto text-center md:flex md:justify-between md:items-center">
+            <div class="mb-6 md:mb-0">
+                <p>&copy; 2025 Bondi App. Todos los derechos reservados.</p>
+            </div>
+            <div>
+                <a href="#" class="text-gray-400 hover:text-white mx-2 transition-colors duration-200">Privacidad</a>
+                <span class="text-gray-500">|</span>
+                <a href="#" class="text-gray-400 hover:text-white mx-2 transition-colors duration-200">Términos</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-kml@1.0.0/L.KML.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

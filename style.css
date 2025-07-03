@@ -1,0 +1,43 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f4f8; /* Un fondo suave */
+    color: #374151; /* Color de texto principal */
+}
+.hero-background {
+    /* Fondo degradado impactante para la sección principal */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.btn-primary {
+    background-color: #4f46e5; /* Azul índigo */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #4338ca; /* Azul índigo más oscuro */
+    transform: scale(1.05);
+}
+.btn-secondary {
+    background-color: #10b981; /* Verde esmeralda */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-secondary:hover {
+    background-color: #059669; /* Verde esmeralda más oscuro */
+    transform: scale(1.05);
+}
+/* Estilos para íconos SVG personalizados */
+.icon-svg {
+    width: 2.5rem; /* Tamaño del ícono */
+    height: 2.5rem;
+    fill: currentColor; /* Usa el color del texto circundante */
+}
+/* Estilo para el mapa Leaflet principal */
+#all-routes-map {
+    height: 500px; /* Altura del mapa */
+    border-radius: 0.75rem; /* Esquinas redondeadas */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Sombra */
+}
+/* Estilo para el mapa Leaflet de detalle de línea */
+#leaflet-line-map {
+    height: 300px; /* Altura más pequeña para el mapa de detalle */
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}
