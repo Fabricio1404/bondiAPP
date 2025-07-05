@@ -1,43 +1,452 @@
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f0f4f8; /* Un fondo suave */
-    color: #374151; /* Color de texto principal */
+  font-family: "Inter", sans-serif;
+  background-color: #34495e; /* Fondo oscuro predominante */
+  color: #ecf0f1; /* Texto claro para el fondo oscuro */
 }
+
+/* Hero section mantiene su estilo */
 .hero-background {
-    /* Fondo degradado impactante para la sección principal */
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2c3e50 0%, #1a5276 100%);
 }
+
 .btn-primary {
-    background-color: #4f46e5; /* Azul índigo */
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #3498db;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
 .btn-primary:hover {
-    background-color: #4338ca; /* Azul índigo más oscuro */
-    transform: scale(1.05);
+  background-color: #217dbb;
+  transform: scale(1.05);
 }
+
 .btn-secondary {
-    background-color: #10b981; /* Verde esmeralda */
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #7f8c8d;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
 .btn-secondary:hover {
-    background-color: #059669; /* Verde esmeralda más oscuro */
-    transform: scale(1.05);
+  background-color: #616a6b;
+  transform: scale(1.05);
 }
-/* Estilos para íconos SVG personalizados */
+
 .icon-svg {
-    width: 2.5rem; /* Tamaño del ícono */
-    height: 2.5rem;
-    fill: currentColor; /* Usa el color del texto circundante */
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: currentColor;
 }
-/* Estilo para el mapa Leaflet principal */
+
 #all-routes-map {
-    height: 500px; /* Altura del mapa */
-    border-radius: 0.75rem; /* Esquinas redondeadas */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Sombra */
+  height: 500px;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
-/* Estilo para el mapa Leaflet de detalle de línea */
+
 #leaflet-line-map {
-    height: 300px; /* Altura más pequeña para el mapa de detalle */
-    border-radius: 0.75rem;
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+  height: 300px;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Estilos para la sección "¿Te sientes perdido...?" con colores invertidos y centrado */
+#problema-solucion {
+  background-color: #2c3e50; /* Fondo azul oscuro */
+  color: #ecf0f1; /* Texto claro */
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+  margin-top: -4rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  text-align: center; /* Centrar el contenido de la sección */
+}
+
+#problema-solucion h2,
+#problema-solucion h3,
+#problema-solucion p {
+  color: #ecf0f1; /* Asegurar que el texto sea blanco */
+}
+
+/* Ajustar el texto dentro de los divs específicos para que hereden el centrado o se centren */
+#problema-solucion .text-left {
+  text-align: center; /* Cambiar a center para que el texto también se centre */
+}
+
+/* Estilos para la sección "Beneficios que Transforman tu Viaje" con fondo oscuro */
+#beneficios {
+  background-color: #34495e; /* Fondo oscuro */
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#beneficios h2 {
+  color: #ecf0f1; /* Título blanco */
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+#beneficios .text-gray-900 {
+  /* Título de la sección */
+  color: #ecf0f1;
+}
+
+/* Tarjetas de beneficios */
+#beneficios .bg-white {
+  background-color: #2c3e50; /* Fondo oscuro para las tarjetas */
+  color: #ecf0f1; /* Texto claro para las tarjetas */
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#beneficios .bg-white:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+#beneficios h3 {
+  color: #ecf0f1; /* Títulos de las tarjetas en blanco */
+}
+
+#beneficios p.text-gray-700 {
+  color: #bdc3c7; /* Texto de las tarjetas en gris claro */
+}
+
+/* Colores de iconos de beneficios */
+#beneficios .text-indigo-600 {
+  color: #a8b1ff;
+} /* Azul más claro */
+#beneficios .text-green-600 {
+  color: #2ecc71;
+}
+#beneficios .text-purple-600 {
+  color: #9b59b6;
+}
+#beneficios .text-red-600 {
+  color: #e74c3c;
+}
+#beneficios .text-yellow-600 {
+  color: #f1c40f;
+}
+#beneficios .text-blue-600 {
+  color: #3498db;
+}
+
+/* Estilos para la sección "Así de Fácil es Usar Bondi App" */
+#como-funciona {
+  background-color: #34495e; /* Mismo fondo oscuro que el body para integración */
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#como-funciona h2 {
+  color: #ecf0f1;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+#como-funciona .grid-cols-1 > div,
+#como-funciona .grid-cols-3 > div {
+  background-color: #ecf0f1; /* Fondo blanco para las tarjetas */
+  color: #2c3e50; /* Texto oscuro para las tarjetas */
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#como-funciona .w-16 {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+#como-funciona .bg-indigo-500 {
+  background-color: #645bff;
+}
+
+#como-funciona .bg-green-500 {
+  background-color: #2ecc71;
+}
+
+#como-funciona .bg-purple-500 {
+  background-color: #9b59b6;
+}
+
+#como-funciona h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+#como-funciona p {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+/* Estilos para la sección "Mantente Informado..." */
+#noticias {
+  background-color: #34495e; /* Mismo fondo oscuro */
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#noticias h2 {
+  color: #ecf0f1;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+#noticias p {
+  color: #bdc3c7;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#noticias .grid-cols-1 > div,
+#noticias .grid-cols-3 > div {
+  background-color: #2c3e50; /* Tarjetas de noticias más oscuras */
+  color: #ecf0f1;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+#noticias img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#noticias .p-6 {
+  padding: 1.5rem;
+}
+
+#noticias h3 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+#noticias .text-gray-700 {
+  color: #bdc3c7;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+#noticias .text-indigo-600 {
+  color: #a8b1ff;
+}
+
+#noticias .text-indigo-600:hover {
+  color: #d2d9ff;
+}
+
+/* Ocultar el botón "Leer más" */
+#noticias a.font-medium {
+  display: none;
+}
+
+/* Estilos para la sección "Servicio Bondi App: Movilidad en Formosa" con fondo oscuro */
+#bondiapp-section {
+  background-color: #34495e; /* Fondo oscuro */
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#bondiapp-section h2,
+#bondiapp-section h3 {
+  color: #ecf0f1; /* Títulos blancos */
+}
+
+#bondiapp-section p {
+  color: #bdc3c7; /* Párrafos gris claro */
+}
+
+/* Buscador de rutas */
+#bondiapp-section .bg-white {
+  background-color: #2c3e50; /* Fondo oscuro para el buscador */
+  color: #ecf0f1; /* Texto claro */
+}
+
+#bondiapp-section .bg-white h3,
+#bondiapp-section .bg-white p {
+  color: #ecf0f1; /* Asegurar texto claro dentro del buscador */
+}
+
+#bondiapp-section input {
+  background-color: #34495e; /* Fondo de inputs oscuro */
+  color: #ecf0f1; /* Texto de inputs claro */
+  border-color: #4a627a; /* Borde más claro */
+}
+
+#bondiapp-section input::placeholder {
+  color: #bdc3c7; /* Placeholder claro */
+}
+
+#bondiapp-section .bg-gray-50 {
+  /* Resultados de búsqueda */
+  background-color: #4a627a; /* Fondo oscuro para resultados */
+  color: #ecf0f1; /* Texto claro */
+}
+
+/* Tarjetas de líneas de colectivo */
+#line-list-container .line-card {
+  background-color: #2c3e50; /* Fondo oscuro para las tarjetas de línea */
+  color: #ecf0f1; /* Texto claro para las tarjetas de línea */
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#line-list-container .line-card:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15),
+    0 2px 4px -1px rgba(0, 0, 0, 0.08);
+}
+
+#line-list-container .line-card h4 {
+  color: #ecf0f1; /* Título de línea blanco */
+}
+
+#line-list-container .line-card p.text-gray-700 {
+  color: #bdc3c7; /* Descripción de línea gris claro */
+}
+
+/* Contenedor de detalles de línea */
+#line-detail-container {
+  background-color: #2c3e50; /* Fondo oscuro para el detalle */
+  color: #ecf0f1; /* Texto claro */
+}
+
+#line-detail-container h3,
+#line-detail-container h4 {
+  color: #ecf0f1; /* Títulos blancos */
+}
+
+#line-detail-container ul {
+  color: #bdc3c7; /* Listas gris claro */
+}
+
+/* Comentarios y sugerencias */
+#line-detail-container .bg-gray-50 {
+  background-color: #4a627a; /* Fondo oscuro para comentarios */
+  color: #ecf0f1; /* Texto claro */
+}
+
+#line-detail-container .bg-gray-50 h4,
+#line-detail-container .bg-gray-50 p {
+  color: #ecf0f1; /* Texto claro dentro de comentarios */
+}
+
+#line-detail-container input,
+#line-detail-container textarea {
+  background-color: #34495e; /* Fondo de inputs oscuro */
+  color: #ecf0f1; /* Texto de inputs claro */
+  border-color: #4a627a; /* Borde más claro */
+}
+
+#line-detail-container input::placeholder,
+#line-detail-container textarea::placeholder {
+  color: #bdc3c7; /* Placeholder claro */
+}
+
+/* Estilos para la sección final "¡No te quedes sin tu Bondi App!" */
+.bg-indigo-700 {
+  background-color: #34495e; /* Mismo color de fondo oscuro */
+  color: #ecf0f1;
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+  text-align: center;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bg-indigo-700 h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.bg-indigo-700 p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.bg-indigo-700 .btn-secondary {
+  background-color: #7f8c8d;
+}
+
+.bg-indigo-700 .btn-secondary:hover {
+  background-color: #616a6b;
+}
+
+/* Footer mantiene su estilo oscuro */
+.bg-gray-900 {
+  background-color: #000000;
+  color: #c7bdbe;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.bg-gray-900 a {
+  color: #ffffff;
+}
+
+.bg-gray-900 a:hover {
+  color: #ecf0f1;
+}
+
+/* Modo oscuro armonizado (ajustes si hay un toggle de dark mode) */
+.dark body {
+  background-color: #212f3c; /* Azul oscuro casi negro */
+  color: #ecf0f1; /* Gris claro para el texto */
+}
+.dark .hero-background {
+  background: linear-gradient(
+    135deg,
+    #1a242f 0%,
+    #0c151c 100%
+  ); /* Degradado aún más oscuro para el hero */
+}
+.dark .bg-white {
+  /* Esto podría ser redundante si ya no hay bg-white */
+  background-color: #34495e; /* Azul grisáceo oscuro para elementos "blancos" */
+}
+.dark .text-gray-900,
+.dark .text-gray-800,
+.dark .text-gray-700 {
+  color: #f1f5f9; /* Texto claro en modo oscuro */
+}
+.dark .bg-gray-50 {
+  /* Esto podría ser redundante si ya no hay bg-gray-50 */
+  background-color: #475569; /* Un gris azulado más oscuro para fondos sutiles */
 }
