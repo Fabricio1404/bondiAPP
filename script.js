@@ -23,9 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
             comments: []
         },
         {
-            nombre: "Línea C",
+             nombre: "Línea C",
             barrios: ["Nam Qom", "San Antonio", "Centro", "Plaza San Martín"],
-            geojson: [], // Añade tus rutas GeoJSON aquí si tienes para la Línea C
+            geojson: [ // ¡MODIFICA ESTO PARA LA LÍNEA C!
+             { path: 'geojson/linea_C_ida.geojson', color: '#FFFF00' }, // Amarillo para la ida (sin cambios)
+                { path: 'geojson/linea_C_vuelta.geojson', color: '#A0522D' } // ¡Marrón más oscuro para la vuelta!
+            ],
             comments: []
         },
         {
@@ -311,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Solo llama fitBounds si no hay GeoJSON pendientes de cargar,
                 // o si ya se cargaron todos los GeoJSON y aún no se hizo fitBounds.
                 if (!currentLineSelected.geojson || currentLineSelected.geojson.length === 0) {
-                     if (allLayersBounds.isValid()) {
+                    if (allLayersBounds.isValid()) {
                         detailMap.fitBounds(allLayersBounds, { padding: [50, 50] });
                     } else {
                         // Si no hay bounds válidos (ej. solo 1 parada), centrar en esa parada o en Formosa
@@ -322,7 +325,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                 }
-
 
                 loadComments(currentLineSelected.comments);
                 lineListContainer.classList.add('hidden');
