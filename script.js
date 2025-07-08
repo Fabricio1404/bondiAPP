@@ -43,13 +43,19 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             nombre: "Línea E",
             barrios: ["Eva Perón", "Juan Manuel de Rosas", "Los Lapachos", "Centro"],
-            geojson: [], // Añade tus rutas GeoJSON aquí si tienes para la Línea E
+            geojson: [ // ¡Rutas GeoJSON agregadas para la Línea E!
+                { path: 'geojson/linea_E_ida.geojson', color: "deepskyblue" },
+                { path: 'geojson/linea_E_vuelta.geojson', color: "blue" }
+            ],
             comments: []
         },
         {
             nombre: "Línea F",
             barrios: ["San Martín", "Villa Hermosa", "Colón", "Centro"],
-            geojson: [], // Añade tus rutas GeoJSON aquí si tienes para la Línea F
+            geojson: [ // ¡Rutas GeoJSON corregidas para la Línea F!
+                { path: 'geojson/Linea_F_Ida.geojson', color: "#A7B734" },
+                { path: 'geojson/Linea_F_Vuelta.geojson', color: "#5C661F" }
+            ],
             comments: []
         },
         {
@@ -199,10 +205,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                     // // Añade marcadores para cada parada de la línea (si existen) - si tienes esta data en 'lineas'
                     // if (linea.paradas) {
-                    //     linea.paradas.forEach(parada => {
-                    //         const marker = L.marker(parada.coords).addTo(mainMap);
-                    //         marker.bindPopup(`<b>${parada.name}</b><br>Línea ${linea.nombre}`);
-                    //     });
+                    //      linea.paradas.forEach(parada => {
+                    //          const marker = L.marker(parada.coords).addTo(mainMap);
+                    //          marker.bindPopup(`<b>${parada.name}</b><br>Línea ${linea.nombre}`);
+                    //      });
                     // }
                 });
 
@@ -216,8 +222,8 @@ document.addEventListener('DOMContentLoaded', function() {
             showAllRoutesBtn.textContent = 'Mostrar Mapa de Todas las Rutas y Paradas';
             // Opcional: si quieres que el mapa se reinicie cada vez que se oculta
             // if (mainMap) {
-            //     mainMap.remove();
-            //     mainMap = null;
+            //      mainMap.remove();
+            //      mainMap = null;
             // }
         }
     });
