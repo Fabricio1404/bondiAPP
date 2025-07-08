@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
             comments: []
         },
         {
-             nombre: "Línea C",
+            nombre: "Línea C",
             barrios: ["Nam Qom", "San Antonio", "Centro", "Plaza San Martín"],
             geojson: [ // ¡MODIFICA ESTO PARA LA LÍNEA C!
-             { path: 'geojson/linea_C_ida.geojson', color: '#FFFF00' }, // Amarillo para la ida (sin cambios)
+                { path: 'geojson/linea_C_ida.geojson', color: '#FFFF00' }, // Amarillo para la ida (sin cambios)
                 { path: 'geojson/linea_C_vuelta.geojson', color: '#A0522D' } // ¡Marrón más oscuro para la vuelta!
             ],
             comments: []
@@ -34,7 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             nombre: "Línea D",
             barrios: ["San Francisco", "La Floresta", "Don Bosco", "Centro"],
-            geojson: [], // Añade tus rutas GeoJSON aquí si tienes para la Línea D
+            geojson: [ // ¡AÑADIDO PARA LÍNEA D!
+                { path: 'geojson/linea_D_ida.geojson', color: '#a61c5f' }, // Color para la ida de Línea D
+                { path: 'geojson/linea_D_vuelta.geojson', color: '#e03a7a' } // Color para la vuelta de Línea D
+            ],
             comments: []
         },
         {
