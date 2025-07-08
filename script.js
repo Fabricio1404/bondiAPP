@@ -61,7 +61,10 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             nombre: "Línea G",
             barrios: ["Laureles", "Venezuela", "Fleming", "Centro"],
-            geojson: [], // Añade tus rutas GeoJSON aquí si tienes para la Línea G
+            geojson: [ // ¡Rutas GeoJSON agregadas para la Línea G!
+                { path: 'geojson/Linea_G_ida.geojson', color: "#8E44AD" },
+                { path: 'geojson/Linea_G_Vuelta.geojson', color: "#D2B4DE" }
+            ],
             comments: []
         },
         {
@@ -264,6 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             .then(res => {
                                 if (!res.ok) {
                                     throw new Error(`HTTP error! status: ${res.status} - ${geojsonInfo.path}`);
+                                    return; // Salir si hay un error HTTP
                                 }
                                 return res.json(); // Esperamos JSON
                             })
